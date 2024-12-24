@@ -1,7 +1,11 @@
-<strong><%= tweet.body %></strong>
-<p>
-  Likes: <%= tweet.likes_count %>, Retweets: <%= tweet.retweets_count %>
-</p>
-<%= link_to 'Show', tweet_path(tweet) %> |
-<%= link_to 'Edit', edit_tweet_path(tweet) %> |
-<%= link_to 'Destroy', tweet_path(tweet), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= turbo_frame_tag dom_id(tweet) do %>
+  <div class="card card-body">
+    <div><%= tweet.body %></div>
+
+    <div class="mt-2">
+      <%= button_to "Likes (#{tweet.likes_count})", tweet_like_path(tweet), method: :post %>
+      <%= button_to "Retweet (#{tweet.retweets_count})", tweet_retweet_path(tweet), method: :post %>
+      <%= link_to "Edit", edit_tweet_path(tweet) %>
+    </div>
+  </div>
+<% end %>
