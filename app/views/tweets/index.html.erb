@@ -1,45 +1,15 @@
 <!-- app/views/tweets/index.html.erb -->
 <style>
-    /* Basic styling for the form field */
-  .field {
-    margin-bottom: 1.5rem; /* Space between fields */
-  }
-
-  .field label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    font-size: 1rem; /* Adjust label font size */
-  }
 
   .field textarea {
     width: 100%; /* Make textarea full-width */
+    height: 100px;
     padding: 0.5rem;
     font-size: 1rem;
     border: 1px solid #ccc; /* Add a light border */
     border-radius: 4px; /* Rounded corners */
-    resize: vertical; /* Allow vertical resizing only */
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-
-  /* Basic styling for the actions area */
-  .actions {
-    text-align: right; /* Align actions to the right */
-  }
-
-  .actions input[type="submit"] {
-    background-color: #007bff; /* Primary button color */
-    color: white; /* Text color */
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none; /* Remove border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.2s ease; /* Smooth hover transition */
-  }
-
-  .actions input[type="submit"]:hover {
-    background-color: #0056b3; /* Darker shade for hover */
+    resize: none; 
   }
 
 </style>
