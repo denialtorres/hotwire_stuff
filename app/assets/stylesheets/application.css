@@ -14,9 +14,9 @@
   --font-family: "JetBrains Mono", monospace;
   --line-height: 1.2rem;
   --border-thickness: 2px;
-  --text-color: #000;
+  --text-color: #fff;
   --text-color-alt: #666;
-  --background-color: #fff;
+  --background-color: #000;
   --background-color-alt: #eee;
 
   --font-weight-normal: 500;
@@ -33,9 +33,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-color: #fff;
+    --text-color: #000;
     --text-color-alt: #aaa;
-    --background-color: #000;
+    --background-color: #fff;
     --background-color-alt: #111;
   }
 }
@@ -372,6 +372,7 @@ button {
 
 button:hover {
   background: var(--background-color-alt);
+  color: #fff;
 }
 button:active {
   transform: translate(2px, 2px);
