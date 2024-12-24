@@ -1,5 +1,6 @@
 include:
   - .docker/postgres.yml
+  - .docker/redis.yml
 x-base: &base
   build:
     context: .
@@ -16,8 +17,10 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
+      - redis
     environment:
       POSTGRES_PASSWORD: postgres
+      REDIS_URL: ${REDIS_URL}
 networks:
   backend:
     driver: "bridge"

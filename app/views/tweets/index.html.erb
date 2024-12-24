@@ -70,17 +70,7 @@
 
 <hr>
 
-<!-- List of all tweets -->
-<ul>
-  <% @tweets.each do |tweet| %>
-    <li>
-      <strong><%= tweet.body %></strong>
-      <p>
-        Likes: <%= tweet.likes_count %>, Retweets: <%= tweet.retweets_count %>
-      </p>
-      <%= link_to 'Show', tweet_path(tweet) %> |
-      <%= link_to 'Edit', edit_tweet_path(tweet) %> |
-      <%= link_to 'Destroy', tweet_path(tweet), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </li>
-  <% end %>
-</ul>
+<%= turbo_stream_from "tweets" %>
+<%= turbo_frame_tag "tweets" do %>
+  <%= render @tweets %>
+<% end %>
