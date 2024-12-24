@@ -11,7 +11,7 @@ services:
     <<: *base
     restart: on-failure
     volumes:
-      - .:/app:cached
+      - .:/rails:cached
     ports:
       - "3000:3000"
     depends_on:

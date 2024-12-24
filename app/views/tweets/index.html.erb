@@ -1,0 +1,86 @@
+<!-- app/views/tweets/index.html.erb -->
+<style>
+    /* Basic styling for the form field */
+  .field {
+    margin-bottom: 1.5rem; /* Space between fields */
+  }
+
+  .field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1rem; /* Adjust label font size */
+  }
+
+  .field textarea {
+    width: 100%; /* Make textarea full-width */
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc; /* Add a light border */
+    border-radius: 4px; /* Rounded corners */
+    resize: vertical; /* Allow vertical resizing only */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
+  /* Basic styling for the actions area */
+  .actions {
+    text-align: right; /* Align actions to the right */
+  }
+
+  .actions input[type="submit"] {
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Text color */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s ease; /* Smooth hover transition */
+  }
+
+  .actions input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade for hover */
+  }
+
+</style>
+<h1>Tweets</h1>
+
+<!-- Form for creating a new tweet -->
+<%= form_with(model: @tweet, local: true) do |form| %>
+  <% if @tweet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+      <ul>
+        <% @tweet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, rows: 3 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<hr>
+
+<!-- List of all tweets -->
+<ul>
+  <% @tweets.each do |tweet| %>
+    <li>
+      <strong><%= tweet.body %></strong>
+      <p>
+        Likes: <%= tweet.likes_count %>, Retweets: <%= tweet.retweets_count %>
+      </p>
+      <%= link_to 'Show', tweet_path(tweet) %> |
+      <%= link_to 'Edit', edit_tweet_path(tweet) %> |
+      <%= link_to 'Destroy', tweet_path(tweet), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>

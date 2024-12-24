@@ -23,3 +23,9 @@ docker-compose exec app rails db:migrate
 ```
 docker-compose exec app ./bin/dev -b 0.0.0.0
 ```
+
+## connect to the shell
+
+```
+docker-compose exec app /bin/bash
+```
