@@ -372,6 +372,7 @@ button {
 
 button:hover {
   background: var(--background-color-alt);
+  color: #fff;
 }
 button:active {
   transform: translate(2px, 2px);
