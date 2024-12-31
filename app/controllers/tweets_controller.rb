@@ -29,6 +29,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
+        format.turbo_stream
         format.html { redirect_to tweets_url, notice: "Tweet created" }
         format.json { render :show, status: :created, local: @tweet }
       else

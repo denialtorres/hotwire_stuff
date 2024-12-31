@@ -11,7 +11,70 @@
   }
 
  *:focus {outline:none !important}
+
+
+ .tabs-container {
+  max-width: 100%;
+  margin: 0 auto;
+  border: var(--border-thickness) solid var(--text-color);
+  background: var(--background-color-alt);
+}
+
+.tabs-header {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: var(--border-thickness) solid var(--text-color);
+}
+
+.tab-button {
+  flex: 1;
+  padding: calc(var(--line-height) / 2);
+  background: var(--background-color);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+.tab-button:focus {
+  outline: none;
+  border-bottom: var(--border-thickness) solid var(--text-color-alt);
+}
+
+.tab-content {
+  width: 100%;
+  height: 150px;
+  padding: 0.5rem;
+  border: none;
+  font-family: var(--font-family);
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.tab-content[hidden] {
+  display: none;
+}
+
+.tab-button.active {
+  border-bottom: 3px solid var(--text-color-alt);
+}
 </style>
+<%#
+
+<div class="tabs-container" data-controller="tabs">
+  <div class="tabs-header">
+    <button class="tab-button" data-action="click->tabs#changeTab" data-tabs-target="tabButton" data-tab="tab-1">HTML (ERB)</button>
+    <button class="tab-button" data-tab="tab-2" data-action="click->tabs#changeTab" data-tabs-target="tabButton" data-tab="tab-2">CSS</button>
+    <button class="tab-button" data-tab="tab-3" data-action="click->tabs#changeTab" data-tabs-target="tabButton" data-tab="tab-3">VARIABLES</button>
+  </div>
+  <div class="tabs-content">
+    <textarea id="tab-1" class="tab-content" data-tabs-target="tabContent" tabindex="0">Content for Tab 1</textarea>
+    <textarea id="tab-2" class="tab-content" data-tabs-target="tabContent" tabindex="0" hidden>Content for Tab 2</textarea>
+    <textarea id="tab-3" class="tab-content" data-tabs-target="tabContent" tabindex="0" hidden>Content for Tab 3</textarea>
+  </div>
+</div>%>
+
+
 
 <% if user_signed_in? %>
   <h1>Welcome Home, <%= current_user.email %></h1>
@@ -23,12 +86,16 @@
 
 <h1>Tweets</h1>
 <%= turbo_frame_tag "tweet_form" do %>
-  <%= render "tweets/form", tweet: @tweet %>
+    <div id="tweet_form">
+      <%= render "tweets/form", tweet: @tweet %>
+    </div>
 <% end %>
 
 <hr>
 
 <%= turbo_stream_from "tweets" %>
 <%= turbo_frame_tag "tweets" do %>
+ <div id="tweets">
   <%= render @tweets %>
+ </div>
 <% end %>
