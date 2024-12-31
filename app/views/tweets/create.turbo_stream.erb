@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "tweets", partial: "tweets/tweet", locals:{ tweet: @tweet } %>
+<%= turbo_stream.replace "tweet_form", partial: "tweets/form", locals:{ tweet: Tweet.new } %>
+<%= turbo_stream.append "flash", partial: "shared/flash", locals: { msg_type: :notice, message: "Your tweet was created successfully" } %>
